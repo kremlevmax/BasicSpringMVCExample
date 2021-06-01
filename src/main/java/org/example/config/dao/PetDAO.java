@@ -38,6 +38,19 @@ public class PetDAO {
         pet.setId(++PET_COUNT);
         pets.add(pet);
     }
+
+    public void update(int id, Pet pet) {
+        for (int i = 0; i < pets.size(); i++) {
+            if (pets.get(i).getId() == id) {
+                pets.get(i).setName(pet.getName());
+                pets.get(i).setType(pet.getType());
+            }
+        }
+    }
+
+    public void delete(int id) {
+        pets.remove(id-1);
+    }
 }
 
 

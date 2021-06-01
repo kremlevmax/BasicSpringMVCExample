@@ -41,4 +41,23 @@ public class PetsController {
         petDAO.save(pet);
         return "redirect:/pets";
     }
+
+    @GetMapping("/{id}/update")
+    public String updateForm(Model model, @PathVariable("id") int id) {
+        model.addAttribute("pet", petDAO.showById(id));
+        return "pets/update";
+    }
+
+    @PatchMapping("/{id}")
+    public String updateEntry(@ModelAttribute("pet") Pet pet, @PathVariable("id") int id) {
+        petDAO.update(id, pet);
+        return "redirect:/pets";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteEntry(@PathVariable("id") int id) {
+        petDAO.delete(id);
+        return "redirect:/pets";
+    }
+
 }

@@ -5,7 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-<p th:text = "${pet.getName()}">
+<p th:text = "${pet.getName()}" />
+<hr>
+<a th:href="@{/pets/{id}/update(id = ${pet.getId()})}">Update info</a>
 
+<form th:method = "DELETE" th:action = "@{/pets/{id}(id = ${pet.getId()})}">
+    <input type="submit" value="DELETE ENTRY">
+</form>
 </body>
 </html>
