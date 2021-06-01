@@ -7,10 +7,20 @@
 <body>
   <form th:method = "POST" th:action = "@{/pets}" th:object = "${pet}">
     <label for="type">Type:</label>
+    <div style="color: red" th:if = "${#fields.hasErrors('type')}" th:errors = "*{type}">Type Errors</div>
     <input type="text" th:field = "*{type}" id="type" />
     <br>
     <label for="name">Name:</label>
+    <div style="color: red" th:if = "${#fields.hasErrors('name')}" th:errors = "*{name}">Name Errors</div>
     <input type="text" th:field = "*{name}" id="name" />
+    <br>
+    <label for="name">Email:</label>
+    <div style="color: red" th:if = "${#fields.hasErrors('email')}" th:errors = "*{email}">Email Errors</div>
+    <input type="text" th:field = "*{email}" id="email" />
+    <br>
+    <label for="name">Age:</label>
+    <div style="color: red" th:if = "${#fields.hasErrors('age')}" th:errors = "*{age}">Age Errors</div>
+    <input type="text" th:field = "*{age}" id="age" />
     <br>
     <input type = "submit" value="ADD A PET" />
   </form>

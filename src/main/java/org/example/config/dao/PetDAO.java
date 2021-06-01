@@ -44,6 +44,8 @@ public class PetDAO {
             if (pets.get(i).getId() == id) {
                 pets.get(i).setName(pet.getName());
                 pets.get(i).setType(pet.getType());
+                pets.get(i).setEmail(pet.getEmail());
+                pets.get(i).setAge(pet.getAge());
             }
         }
     }

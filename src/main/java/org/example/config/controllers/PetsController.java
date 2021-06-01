@@ -5,7 +5,10 @@ import org.example.config.models.Pet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/pets")
@@ -37,7 +40,8 @@ public class PetsController {
     }
 
     @PostMapping()
-    public String postPetObject(@ModelAttribute("pet") Pet pet) {
+    public String postPetObject(@ModelAttribute("pet") @Valid Pet pet, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) return "pets/new";
         petDAO.save(pet);
         return "redirect:/pets";
     }
@@ -49,7 +53,8 @@ public class PetsController {
     }
 
     @PatchMapping("/{id}")
-    public String updateEntry(@ModelAttribute("pet") Pet pet, @PathVariable("id") int id) {
+    public String updateEntry(@ModelAttribute("pet") @Valid Pet pet, BindingResult bindingResult, @PathVariable("id") int id) {
+        if (bindingResult.hasErrors()) return "pets/update";
         petDAO.update(id, pet);
         return "redirect:/pets";
     }
