@@ -38,7 +38,7 @@ public class PetDAO {
     }
 
     public void update(int id, Pet pet) {
-        jdbcTemplate.update("INSERT INTO Pet VALUES (?, ?, ?, ?) WHERE Id = ?",
+        jdbcTemplate.update("UPDATE Pet SET name = ?, age = ?, email = ?, type = ? WHERE (Id = ?)",
                 pet.getName(), pet.getAge(), pet.getEmail(), pet.getType(), id);
     }
 
